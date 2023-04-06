@@ -2,8 +2,20 @@ input.onGesture(Gesture.ScreenDown, function () {
     basic.showString("" + input.temperature() + "C")
 })
 input.onGesture(Gesture.ScreenUp, function () {
-    if (input.lightLevel() > 50) {
-        basic.showString("You should go to bed right now!")
+    if (input.compassHeading() < 45 || input.compassHeading() > 315) {
+        basic.showString("S")
+    } else if (input.compassHeading() < 225 || input.compassHeading() > 135) {
+        basic.showString("N")
+    } else if (input.compassHeading() < 315 || input.compassHeading() > 225) {
+        basic.showString("E")
+    } else if (input.compassHeading() < 315 || input.compassHeading() > 225) {
+        basic.showString("W")
+    } else {
+        basic.showString("")
+    }
+    basic.pause(5000)
+    if (input.lightLevel() > 128) {
+        basic.showString("It's 11:00 p.m. ,You should go to bed right now!")
     } else {
         if (input.isGesture(Gesture.Shake)) {
             if (input.temperature() >= 100) {
